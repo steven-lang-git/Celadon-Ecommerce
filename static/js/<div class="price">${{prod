@@ -1,0 +1,29 @@
+                        <div class="price">${{product.price|floatformat:2}}</div>
+
+                          <a href="#" data-product={{product.id}} data-action="add"
+                       class="select-options add-btn update-cart">Add to Cart
+                    </a>
+
+                         <li><a href="" data-product={{product.id}} data-action="add" class="add-btn update-cart"
+                               data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+
+                               <li><a href="{% url 'product' product.id %}" data-tip="Quick view"><i class="fa fa-search"></i></a>
+                        </li>
+
+                        <a href="#">
+                        <img class="pic-1" src="{{product.imageURL}}">
+                        <img class="pic-2" src="{{product.imageURL_2}}">
+
+                    </a>
+
+
+                   git commit -m "message here"
+                   git push heroku master
+
+                   view all branches : git branch
+
+                   just git push will push to the remote of the current branch
+                   git push <remote> <branch>
+
+                   git checkout -b <branch-name>
+                   switched to new branch 'feature'

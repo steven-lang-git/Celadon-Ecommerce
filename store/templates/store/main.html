@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<head>
+    <title>
+        CELADON
+    </title>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css"
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+    <script type="text/javascript">
+        var user = '{{request.user}}'
+
+        //referred to Django Documentation
+        function getToken(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    // Does this cookie begin with the name that we want
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        var csrftoken = getToken('csrftoken');
+
+        function getCookie(name) {
+            var cookieArr = document.cookie.split(";");
+            for (var i = 0; i < cookieArr.length; i++) {
+                var cookiePair = cookieArr[i].split("=");
+
+                if (name == cookiePair[0].trim()) {
+                    return decodeURIComponent(cookiePair[1]);
+                }
+            }
+            return null;
+        }
+        var cart = JSON.parse(getCookie('cart'))
+
+        if (cart == undefined) {
+            cart = {}
+            console.log('cart created', cart)
+            document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+        }
+        console.log('Cart:', cart)
+
+
+
+
+
+
+    </script>
+
+    {% block tab-script %} {% endblock tab-script %}
+
+</head>
+
+<body>
+
+
+    <nav class="navbar navbar-findcond navbar-expand-lg ">
+
+
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+
+
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav mr-auto">
+                <a class="brand-navbar w-nav-brand w--current" href="{% url 'store' %}">
+                    <img class="brand-image-navbar" src="{% static 'images/celadon-background.png' %}" loading="lazy"
+                        alt="">
+
+
+                </a>
+                <div class="divider-navbar"></div>
+                <div class="nav-wrap">
+                    <nav role="navigation" class="nav-menu general w-nav-menu">
+                        <div class="nav-menu-link-list">
+                            <li class="nav-link"><a class="nav-link" href="{% url 'store' %}">Store <span
+                                        class="sr-only">(current)</span></a></li>
+                            <li class="nav-link"><a class="nav-link" href="{% url 'contact' %}">Contact Us <span
+                                        class="sr-only">(current)</span></a>
+                            </li>
+                        </div>
+                    </nav>
+                </div>
+
+            </ul>
+
+
+
+                    <form action="{% url 'search' %}" method="get" id="form-id" class="search-nav">
+
+
+
+                        <input class="search-input w-input" type="search" name="productSearch" id="productSearch"
+                            placeholder="Type something">
+
+                        <input class="search-button w-button" type="submit" id="submit-form" value="Search">
+   
+                    </form>
+           
+
+            <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+            <script>
+                var form = document.getElementById("form-id");
+
+                document.getElementById("submit-form").addEventListener("click", function () {
+                    form.submit();
+                });
+
+                $("#productSearch").autocomplete({
+
+                    source: '{% url 'autocomplete' %}',
+
+                    select: function (event, ui) {
+                        var elem = $(event.originalEvent.toElement);
+                        if (elem.hasClass('ac-item-a')) {
+                            $("#productSearch").val(ui.item.label);
+                            var val = ui.item.label;
+                            var url = elem.attr('data-url').replace(/1/, val);
+                            event.preventDefault();
+                            window.open(url, '_self');
+                        }
+                    }
+
+                }).data("ui-autocomplete")._renderItem = function (ul, item) {
+                    return $("<li></li>")
+                        .data("ui-autocomplete-item", item)
+                        .append('<div class="container">' + '<a class= "ac-item-a fa fa-search" style="float:right; width:20px;" data-url={% url 'product' 1 %}>' + '<span>' + item.value + '</span>' + '</a>' + '</div>')
+                        .appendTo(ul);
+
+                };
+
+
+
+            </script>
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-link"><a href="{% url 'profile'%}" class="nav-link nav-link-ltr"
+                        style="color: #90d7a5; text-transform: uppercase;">{{user.username}}<span
+                            class="sr-only">(current)</span></a></li>
+                {% endif %}
+                <li class="nav-link">
+                    <a class="nav-link" href="{% url 'cart' %}" aria-haspopup="true" aria-expanded="false"></i> Cart
+                        <span class="badge badge-pill">{{cartItems}}</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                        aria-expanded="false">
+                        Account 
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <a href="{% url 'profile' %}" id="settings">Settings</a>
+                        <a href="{% url 'order_summary' %}" id="orders">Orders</a>
+                        <div class="dropdown-divider" id="divider"></div>
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'logout' %}">Logout</a>
+                        {% else %}
+                        <a href="{% url 'login' %}">Login</a>
+                        {% endif %}
+
+                    </ul>
+                </li>
+
+
+            </ul>
+
+        </div>
+    </nav>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            {% if request.resolver_match.url_name == "store" or request.resolver_match.url_name == "category" %}
+            {% endif %}
+            <div class="main-contents">
+                {% block content %}
+                {% endblock content %}
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="footer">
+        <div class="page-padding">
+            <div class="container-xxlarge">
+                <div class="line" style="width: 100%; height: 1px;"></div>
+                <div class="padding-vertical padding-xlarge">
+                    <div class="footer-grid">
+                        <div id="w-node-_010eb94e-e537-e275-f514-c9f83fd6c0e6-3fd6c0e0" class="footer-grid-left">
+                            <div>
+                                <div class="margin-bottom margin-medium"><img src="{% static 'images/onyx-logo.png' %}"
+                                        loading="lazy" alt=""></div>
+                                <div class="margin-bottom margin-medium">
+                                    <div class="max-width-small">
+                                        <div>ONYX Club </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="subnav small">
+                                <a href="#" target="_blank"
+                                    class="badge small link w-inline-block">
+                                    <div class="text-meta-small">TW</div>
+                                </a>
+                                <a href="#" target="_blank"
+                                    class="badge small link w-inline-block">
+                                    <div class="text-meta-small">IN</div>
+                                </a>
+                                <a href="#" target="_blank"
+                                    class="badge small link w-inline-block">
+                                    <div class="text-meta-small">Be</div>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="w-node-_78301d62-dfb8-6537-ebe3-084914edf9f2-3fd6c0e0"
+                            class="line-vertical hide-tablet" style="height: 100%; width: 1px;"></div>
+                        <div class="line show-tablet" style="width: 100%; height: 1px;"></div>
+                        <div id="w-node-_3a79508e-f5b8-ff9f-a3ef-280fbd528fd4-3fd6c0e0" class="footer-grid-right">
+                            <div id="w-node-_010eb94e-e537-e275-f514-c9f83fd6c0e8-3fd6c0e0" class="footer-column">
+                                <div class="margin-bottom margin-medium">
+                                    <h3 class="heading-h4">Get to Know Us</h3>
+                                </div>
+                                <div class="footer-nav">
+                                    <a href="/" class="footer-nav-item-link">About Onyx</a>
+
+                                </div>
+                            </div>
+                            <div id="w-node-_53bcf362-596e-4f54-cb5c-2e42d191a7f5-3fd6c0e0" class="footer-column">
+                                <div class="margin-bottom margin-medium">
+                                    <h3 class="heading-h4">Partners</h3>
+                                </div>
+                                <div class="footer-nav"><a
+                                        href="#"
+                                        class="footer-nav-item-link">Website #1</a><a href=""
+                                        class="footer-nav-item-link">Website #2</a><a
+                                        href="#"
+                                        class="footer-nav-item-link">Website #3</a></div>
+                            </div>
+                            <div id="w-node-_010eb94e-e537-e275-f514-c9f83fd6c104-3fd6c0e0" class="footer-column">
+                                <div class="margin-bottom margin-medium">
+                                    <h3 class="heading-h4">Let Us Help You</h3>
+                                </div>
+                                <div class="footer-nav"><a href="{% url 'profile' %}"
+                                        class="footer-nav-item-link">Your Account</a><a
+                                        href="{% url 'order_summary' %}"
+                                        class="footer-nav-item-link">Your Orders</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+    <script type="text/javascript">
+
+
+        if (user == 'AnonymousUser') {
+            document.getElementById('settings').remove()
+            document.getElementById('orders').remove()
+            document.getElementById('divider').remove()
+        }
+
+    </script>
+</body>
+
+</html>

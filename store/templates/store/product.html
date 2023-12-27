@@ -1,0 +1,475 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+{% block tab-scripts %}
+{{ block.super }}
+<script>
+    $(document).ready(function () {
+        if (location.hash) {
+            $("a[href='" + location.hash + "']").tab("show");
+        }
+        $(document.body).on("click", "a[data-toggle='tab']", function (event) {
+            location.hash = this.getAttribute("href");
+        });
+
+    });
+    $(window).on("popstate", function () {
+        var anchor = location.hash || $("a[data-toggle='tab']").first().attr("href");
+        $("a[href='" + anchor + "']").tab("show");
+    });
+
+
+
+
+</script>
+{% endblock tab-scripts %}
+
+<div class="section shop-details">
+    <div class="base-container w-container">
+        <div class="shop-details-wrapper">
+            <div class="more-image-products-block">
+                <div class="collection-list-wrapper-shop-details w-dyn-list w-dyn-items-repeater-ref">
+                    <div role="list" class="collection-list-shop-details w-dyn-items"
+                        data-wf-collection="f_more_images_4dr"
+                        data-wf-template-id="wf-template-ee726d96-c121-d26e-a6fb-32fe2b179e18">
+                        <!-- <div role="listitem" class="collection-item-shop-details w-dyn-item w-dyn-repeater-item">
+                            <a href="#"
+                                data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_more_images_4dr%5B%5D%22%2C%22to%22%3A%22media%22%7D%5D"
+                                data-w-id="1c9ecee9-67f3-d315-f387-ae3ac28f7570" 
+                                class="lightbox-link-shop w-inline-block w-lightbox" aria-label="open lightbox"
+                               >
+                                <img src="https://assets.website-files.com/63a1b003ae0225b831e82499/63bbe18c15cbc7a569a48e32_Shop%2007.jpg">
+                                
+                            </a>
+                        </div> -->
+                        <div role="listitem" class="collection-item-shop-details w-dyn-item w-dyn-repeater-item">
+                            <a href="#"
+                                data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_more_images_4dr%5B%5D%22%2C%22to%22%3A%22media%22%7D%5D"
+                                data-w-id="1c9ecee9-67f3-d315-f387-ae3ac28f7570" 
+                                class="lightbox-link-shop w-inline-block w-lightbox" aria-label="open lightbox"
+                                aria-haspopup="dialog">
+                                <img src="{% static product.imageURL %}"
+                                    loading="lazy"
+                                    data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_more_images_4dr%5B%5D%22%2C%22to%22%3A%22src%22%7D%5D"
+                                    alt=""
+                                    sizes="(max-width: 479px) 100vw, (max-width: 767px) 45vw, (max-width: 991px) 46vw, (max-width: 1279px) 63vw, 796.1484375px"
+        
+                                    class="image-cover">
+                                <script type="application/json" class="w-json">{
+                            "items": [
+                              {
+                                "url": "https://assets.website-files.com/63a1b003ae0225b831e82499/63bc3544e287d68a03809e87_nick-linnen-VbJRsn2yb34-unsplash.jpg",
+                                "type": "image"
+                              }
+                            ],
+                            "group": "Shop"
+                            }
+                         </script>
+                            </a>
+                        </div>
+                        <div role="listitem" class="collection-item-shop-details w-dyn-item w-dyn-repeater-item">
+                            <a href="#"
+                                data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_more_images_4dr%5B%5D%22%2C%22to%22%3A%22media%22%7D%5D"
+                                data-w-id="1c9ecee9-67f3-d315-f387-ae3ac28f7570" 
+                                class="lightbox-link-shop w-inline-block w-lightbox" aria-label="open lightbox"
+                                aria-haspopup="dialog">
+                                <img src="{% static product.imageURL_2 %}"
+                                    loading="lazy"
+                                    data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_more_images_4dr%5B%5D%22%2C%22to%22%3A%22src%22%7D%5D"
+                                    alt=""
+                                    sizes="(max-width: 479px) 100vw, (max-width: 767px) 45vw, (max-width: 991px) 46vw, (max-width: 1279px) 63vw, 796.1484375px"
+                                    class="image-cover">
+                                <script type="application/json" class="w-json">{
+                            "items": [
+                              {
+                                "url": "https://assets.website-files.com/63a1b003ae0225b831e82499/63bc3544352d658d429c3519_thought-catalog-a7seW_WFONY-unsplash.jpg",
+                                "type": "image"
+                              }
+                            ],
+                            "group": "Shop"
+                            }
+                         </script>
+                            </a>
+                        </div>
+                        <!-- <div role="listitem" class="collection-item-shop-details w-dyn-item w-dyn-repeater-item">
+                            <a href="#"
+                                data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_more_images_4dr%5B%5D%22%2C%22to%22%3A%22media%22%7D%5D"
+                                data-w-id="1c9ecee9-67f3-d315-f387-ae3ac28f7570" 
+                                class="lightbox-link-shop w-inline-block w-lightbox" aria-label="open lightbox"
+                                aria-haspopup="dialog">
+                                <img src="https://assets.website-files.com/63a1b003ae0225b831e82499/63bc3544e673c442ddd96149_dean-pugh-eNIAipH_Bcs-unsplash.jpg"
+                                    loading="lazy"
+                                    data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_more_images_4dr%5B%5D%22%2C%22to%22%3A%22src%22%7D%5D"
+                                    alt=""
+                                    sizes="(max-width: 479px) 100vw, (max-width: 767px) 45vw, (max-width: 991px) 46vw, (max-width: 1279px) 63vw, 796.1484375px"
+                                    srcset="https://assets.website-files.com/63a1b003ae0225b831e82499/63bc3544e673c442ddd96149_dean-pugh-eNIAipH_Bcs-unsplash-p-500.jpg 500w, https://assets.website-files.com/63a1b003ae0225b831e82499/63bc3544e673c442ddd96149_dean-pugh-eNIAipH_Bcs-unsplash.jpg 640w"
+                                    class="image-cover">
+                                <script type="application/json" class="w-json">{
+                            "items": [
+                              {
+                                "url": "https://assets.website-files.com/63a1b003ae0225b831e82499/63bc3544e673c442ddd96149_dean-pugh-eNIAipH_Bcs-unsplash.jpg",
+                                "type": "image"
+                              }
+                            ],
+                            "group": "Shop"
+                            }
+                         </script>
+                            </a>
+                        </div> -->
+                        <!-- <div role="listitem" class="collection-item-shop-details w-dyn-item w-dyn-repeater-item">
+                            <a href="#"
+                                data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_more_images_4dr%5B%5D%22%2C%22to%22%3A%22media%22%7D%5D"
+                                data-w-id="1c9ecee9-67f3-d315-f387-ae3ac28f7570" 
+                                class="lightbox-link-shop w-inline-block w-lightbox" aria-label="open lightbox"
+                                aria-haspopup="dialog">
+                                <img src="https://assets.website-files.com/63a1b003ae0225b831e82499/63bc3544bcaff7c832578d09_samsung-memory-UePOidInpmM-unsplash.jpg"
+                                    loading="lazy"
+                                    data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_more_images_4dr%5B%5D%22%2C%22to%22%3A%22src%22%7D%5D"
+                                    alt=""
+                                    sizes="(max-width: 479px) 100vw, (max-width: 767px) 45vw, (max-width: 991px) 46vw, (max-width: 1279px) 63vw, 796.1484375px"
+                                    srcset="https://assets.website-files.com/63a1b003ae0225b831e82499/63bc3544bcaff7c832578d09_samsung-memory-UePOidInpmM-unsplash-p-500.jpg 500w, https://assets.website-files.com/63a1b003ae0225b831e82499/63bc3544bcaff7c832578d09_samsung-memory-UePOidInpmM-unsplash.jpg 640w"
+                                    class="image-cover">
+                                <script type="application/json" class="w-json">{
+                            "items": [
+                              {
+                                "url": "https://assets.website-files.com/63a1b003ae0225b831e82499/63bc3544bcaff7c832578d09_samsung-memory-UePOidInpmM-unsplash.jpg",
+                                "type": "image"
+                              }
+                            ],
+                            "group": "Shop"
+                            }
+                         </script>
+                            </a>
+                        </div> -->
+                    </div>
+                    <div class="w-dyn-hide w-dyn-empty">
+                        <div>No items found.</div>
+                    </div>
+                </div>
+            </div>
+            <div id="w-node-_8904ad1d-f250-821a-ffc3-0f61ec62cf4d-58f31bdd" class="shop-details-content-block">
+                <div data-w-id="8904ad1d-f250-821a-ffc3-0f61ec62cf4e" style="opacity: 1;" class="shop-sticky-block">
+                    <div>
+                        <h1 class="shop-details-title"> {{product.name}}</h1>
+                        <div class="shop-text-wrapper margin-bottom">
+                            <div class="w-richtext">
+                                <p>Colors: Black/Grey/Yellow </p>
+                                <p>Dimensions: 31 x 75 x 20cm </p>
+                                <p>Fabric: 65% virgin polyester/35% recycled polyester </p>
+                                <p>Removable Shoe Bag</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shop-text-wrapper">
+                        <div class="subtitle-text mt">Price:</div>
+                        <div class="shop-details-price-wrapper">
+                            <h4 class="shop-card-old-price w-condition-invisible w-dyn-bind-empty"></h4>
+                            <h4
+                                data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_price_%22%2C%22to%22%3A%22innerHTML%22%7D%5D">
+                                $&nbsp;{{product.price|floatformat:2}}&nbsp;USD</h4>
+                        </div>
+                    </div>
+                    <div class="add-to-cart-2">
+                        <form data-node-type="commerce-add-to-cart-form" data-commerce-sku-id="63bbe19c10f7d2f919b229c5"
+                            data-loading-text="Adding to cart..." data-commerce-product-id="63bbe19b15cbc72242a48ea7"
+                            class="w-commerce-commerceaddtocartform default-state-2">
+                                {% csrf_token %}
+                                <label
+                                for="quantity-a16976c26b84f054b432f2742a4f8938"
+                                class="subtitle-text mt">Quantity</label>
+                                <input type="number" pattern="^[0-9]+$"
+                                inputmode="numeric" id="quantity-a16976c26b84f054b432f2742a4f8938"
+                                name="commerce-add-to-cart-quantity-input" min="1"
+                                class="w-commerce-commerceaddtocartquantityinput quantity-2" value="1">
+                                <!-- <input
+                                data-product={{product.id}}
+                                type="submit" data-node-type="commerce-add-to-cart-button"
+                                data-loading-text="Adding to cart..." value="Add to Cart" aria-busy="false"
+                                aria-haspopup="dialog"
+                                class="w-commerce-commerceaddtocartbutton primary-button-2 full-width">
+                                 -->
+                                 <a type ="submit" href="#" data-product={{product.id}} data-action="add"
+                                 class="w-commerce-commerceaddtocartbutton primary-button-2 full-width add-btn update-cart">Add to Cart
+                                 </a>
+                                <a
+                                data-node-type="commerce-buy-now-button" data-default-text="Buy now"
+                                data-subscription-text="Subscribe now" aria-busy="false" aria-haspopup="false"
+                                style="display:none" class="w-commerce-commercebuynowbutton buy-now-button-2 w-dyn-hide"
+                                href="/checkout">Buy now</a>
+                            
+                            </form>
+                        <div tabindex="0" style="display:none"
+                            class="w-commerce-commerceaddtocartoutofstock out-of-stock-state-2">
+                            <div>This product is out of stock.</div>
+                        </div>
+                        <div aria-live="assertive" data-node-type="commerce-add-to-cart-error" style="display:none"
+                            class="w-commerce-commerceaddtocarterror error-state-2">
+                            <div data-node-type="commerce-add-to-cart-error"
+                                data-w-add-to-cart-quantity-error="Product is not available in this quantity."
+                                data-w-add-to-cart-general-error="Something went wrong when adding this item to the cart."
+                                data-w-add-to-cart-mixed-cart-error="You can’t purchase another product with a subscription."
+                                data-w-add-to-cart-buy-now-error="Something went wrong when trying to purchase this item."
+                                data-w-add-to-cart-checkout-disabled-error="Checkout is disabled on this site."
+                                data-w-add-to-cart-select-all-options-error="Please select an option in each set.">
+                                Product is not available in this quantity.</div>
+                        </div>
+                    </div>
+                    <div class="shop-text-wrapper margin">
+                        <div class="subtitle-text mt">Details</div>
+                        <p>Lorem ipsum dolor sit amet. Et aliquam perferendis vel enim suscipit non omnis Quis et
+                            ducimus inventore. Rem totam illum ea cupiditate illo sed suscipit voluptatem est reiciendis
+                            modi ut error accusamus ea ipsam aliquid qui beatae architecto. Et quos saepe qui dolorem
+                            quod est incidunt fuga. Est tempore fuga et fuga accusamus rem expedita recusandae est quis
+                            illum sed tenetur cumque. A eligendi architecto et fugit molestias ea tenetur dolor qui
+                            quisquam necessitatibus et dolores molestiae? Id ullam harum et dolor excepturi id optio
+                            aspernatur.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section none-top-padding">
+    <div class="base-container w-container">
+        <div class="shop-details-featured-products-wrapper">
+            <h3 data-w-id="85fd7767-8060-96c2-2495-c805e671a22d" style="opacity: 1;">Just for you</h3>
+            <div data-w-id="85fd7767-8060-96c2-2495-c805e671a22f"
+                style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
+                class="shop-wrapper">
+                <div class="shop-collection-list-wrapper w-dyn-list">
+                    <div role="list" class="shop-collection-list shop-detsils w-dyn-items">
+                        {% for related_product in related_products %}
+                        <div data-w-id="15818147-be46-b1bf-3a59-f4312ff26628" style="opacity: 1;" role="listitem"
+                            class="shop-collection-item w-dyn-item">
+                            <article class="article">
+                                <div class="blog-sidebar-post-image-link height">
+                                    <a href="{% url 'product' related_product.id %}">
+                                        <img width="300" height="300"
+                                            src="{% static related_product.imageURL %}"
+                                            class="image-cover"
+                                            alt="" decoding="async" loading="lazy">
+
+
+                                    </a>
+                                    <div class="w-dyn-list">
+                                        <div role="list" class="w-dyn-items">
+                                            <div role="listitem" class="w-dyn-item"><a href="/category/bestseller"
+                                                    class="blog-sidebar-post-category">Bestseller</a></div>
+                                        </div>
+                                    </div>
+                                    <div style="opacity: 0; background-color: rgba(0, 0, 0, 0);" class="add-to-cart">
+                                        <form data-node-type="commerce-add-to-cart-form"
+                                            data-commerce-sku-id="63bbe019fb087ec247270d08"
+                                            data-loading-text="Adding to cart..."
+                                            data-commerce-product-id="63bbe0183d3d7ab29a72ab18"
+                                            class="w-commerce-commerceaddtocartform default-state"><input type="number"
+                                                pattern="^[0-9]+$" inputmode="numeric"
+                                                id="quantity-c5114690fe9da65d4ea900c920ae0f30"
+                                                name="commerce-add-to-cart-quantity-input" min="1"
+                                                class="w-commerce-commerceaddtocartquantityinput quantity"
+                                                value="1"><input type="submit"
+                                                data-node-type="commerce-add-to-cart-button"
+                                                data-loading-text="Adding to cart..." value="" aria-busy="false"
+                                                aria-haspopup="dialog"
+                                                class="w-commerce-commerceaddtocartbutton primary-button cart"><a
+                                                data-node-type="commerce-buy-now-button" data-default-text="Buy now"
+                                                data-subscription-text="Subscribe now" aria-busy="false"
+                                                aria-haspopup="false"
+                                                class="w-commerce-commercebuynowbutton buy-now-button w-dyn-hide"
+                                                href="/checkout">Buy now</a></form>
+                                        <div tabindex="0" style="display:none"
+                                            class="w-commerce-commerceaddtocartoutofstock">
+                                            <div>This product is out of stock.</div>
+                                        </div>
+                                        <div aria-live="assertive" data-node-type="commerce-add-to-cart-error"
+                                            style="display:none" class="w-commerce-commerceaddtocarterror">
+                                            <div data-node-type="commerce-add-to-cart-error"
+                                                data-w-add-to-cart-quantity-error="Product is not available in this quantity."
+                                                data-w-add-to-cart-general-error="Something went wrong when adding this item to the cart."
+                                                data-w-add-to-cart-mixed-cart-error="You can’t purchase another product with a subscription."
+                                                data-w-add-to-cart-buy-now-error="Something went wrong when trying to purchase this item."
+                                                data-w-add-to-cart-checkout-disabled-error="Checkout is disabled on this site."
+                                                data-w-add-to-cart-select-all-options-error="Please select an option in each set.">
+                                                Product is not available in this quantity.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="blog-sidebar-post-content">
+                                    <div>
+                                        <a href="{% url 'product' related_product.id %}" class="w-inline-block">
+                                            <h5 class="opacity-hover">{{related_product.name}}</h5>
+                                        </a>
+                                    </div>
+                                    <div class="pricer-block wrap">
+                                        <div role="list" class="product-preview-categories-list w-dyn-items">
+                                            <div class="text-meta">Price:</div>
+                                         </div>
+                                        <div
+                                    data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_price_%22%2C%22to%22%3A%22innerHTML%22%7D%5D"
+                                    class="product-preview-price">$&nbsp;{{related_product.price|floatformat:2}}&nbsp;USD</div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="comments" class="comments-container">
+            <div class="fusion-title fusion-title-size-three sep-double sep-solid" style="margin-top:0px;margin-bottom:31px;">
+               <h3 class="title-heading-left fusion-responsive-typography-calculated" style="margin: 0px; --fontSize: 24; line-height: 1.33; --minFontSize: 24;" data-fontsize="24" data-lineheight="32px">
+                  4 Comments							
+               </h3>
+               <div class="title-sep-container">
+                  <div class="title-sep sep-double sep-solid"></div>
+               </div>
+            </div>
+            <ol class="comment-list commentlist">
+               
+               <li class="comment odd alt thread-odd thread-alt depth-1" id="comment-22396">
+                  <div class="the-comment">
+                     <div class="avatar"><img alt="" src="https://secure.gravatar.com/avatar/3383b6c7a4ca5a56de245f532f1c27c0?s=54&amp;d=mm&amp;r=g" srcset="https://secure.gravatar.com/avatar/3383b6c7a4ca5a56de245f532f1c27c0?s=108&amp;d=mm&amp;r=g 2x" class="avatar avatar-54 photo" height="54" width="54" decoding="async"></div>
+                     <div class="comment-box">
+                        <div class="comment-author meta">
+                           <strong>Earl Kovar</strong>
+                           May 21, 2021 at 3:01 am<a rel="nofollow" class="comment-reply-link" href="#comment-22396" data-commentid="22396" data-postid="12855" data-belowelement="comment-22396" data-respondelement="respond" data-replyto="Reply to Earl Kovar" aria-label="Reply to Earl Kovar"> - Reply</a>					
+                        </div>
+                        <div class="comment-text">
+                           <p>What a great article, very informative. Thank you for sharing these tips, this is very helpful for many entrepreneurs and educators. During this time where there are limited number of people who can gather in one area due to the pandemic, having a video conferencing is really important for businesses. I hope many entrepreneurs can see this post as this can give them a lot of information. It is also important to seek guidance from <a href="https://www.appliedglobal.com/" rel="nofollow ugc">  trusted AV solutions provider </a></p>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="the-comment">
+                    <div class="avatar"><img alt="" src="https://secure.gravatar.com/avatar/3383b6c7a4ca5a56de245f532f1c27c0?s=54&amp;d=mm&amp;r=g" srcset="https://secure.gravatar.com/avatar/3383b6c7a4ca5a56de245f532f1c27c0?s=108&amp;d=mm&amp;r=g 2x" class="avatar avatar-54 photo" height="54" width="54" decoding="async"></div>
+                    <div class="comment-box">
+                       <div class="comment-author meta">
+                          <strong>Earl Kovar</strong>
+                          May 21, 2021 at 3:01 am<a rel="nofollow" class="comment-reply-link" href="#comment-22396" data-commentid="22396" data-postid="12855" data-belowelement="comment-22396" data-respondelement="respond" data-replyto="Reply to Earl Kovar" aria-label="Reply to Earl Kovar"> - Reply</a>					
+                       </div>
+                       <div class="comment-text">
+                          <p>What a great article, very informative. Thank you for sharing these tips, this is very helpful for many entrepreneurs and educators. During this time where there are limited number of people who can gather in one area due to the pandemic, having a video conferencing is really important for businesses. I hope many entrepreneurs can see this post as this can give them a lot of information. It is also important to seek guidance from <a href="https://www.appliedglobal.com/" rel="nofollow ugc">  trusted AV solutions provider </a></p>
+                       </div>
+                    </div>
+                 </div>
+                  <!-- <ul class="children">
+                     <li class="comment even depth-2" id="comment-22398">
+                        <div class="the-comment">
+                           <div class="avatar"><img alt="" src="https://secure.gravatar.com/avatar/e5e583f621579abc625b2ccb58621373?s=54&amp;d=mm&amp;r=g" srcset="https://secure.gravatar.com/avatar/e5e583f621579abc625b2ccb58621373?s=108&amp;d=mm&amp;r=g 2x" class="avatar avatar-54 photo" height="54" width="54" decoding="async"></div>
+                           <div class="comment-box">
+                              <div class="comment-author meta">
+                                 <strong>Jill OToole</strong>
+                                 May 21, 2021 at 8:08 pm<a rel="nofollow" class="comment-reply-link" href="#comment-22398" data-commentid="22398" data-postid="12855" data-belowelement="comment-22398" data-respondelement="respond" data-replyto="Reply to Jill OToole" aria-label="Reply to Jill OToole"> - Reply</a>					
+                              </div>
+                              <div class="comment-text">
+                                 <p>So glad to hear that this article was helpful and informative. Thank you for reading and following along with Intelivideo!</p>
+                              </div>
+                           </div>
+                        </div>
+                     </li>
+                  </ul> -->
+                  <!-- .children -->
+            
+               <!-- #comment-## -->
+
+
+               {% for entry in page.object_list %}
+               <div class="the-comment">
+                <div class="avatar"><img alt="" src="https://secure.gravatar.com/avatar/3383b6c7a4ca5a56de245f532f1c27c0?s=54&amp;d=mm&amp;r=g" srcset="https://secure.gravatar.com/avatar/3383b6c7a4ca5a56de245f532f1c27c0?s=108&amp;d=mm&amp;r=g 2x" class="avatar avatar-54 photo" height="54" width="54" decoding="async"></div>
+                <div class="comment-box">
+                   <div class="comment-author meta">
+                      <strong>{{entry.user.username|capfirst}}</strong>
+                      {{entry.create_at}}<a rel="nofollow" class="comment-reply-link" href="#comment-22396" data-commentid="22396" data-postid="12855" data-belowelement="comment-22396" data-respondelement="respond" data-replyto="Reply to Earl Kovar" aria-label="Reply to Earl Kovar"> - Reply</a>					
+                   </div>
+                   <div class="comment-text">
+                      <p>{{entry.comment}}</p>
+                   </div>
+                </div>
+             </div>
+
+
+             
+      
+               {% endfor %}
+
+
+
+
+
+               <div class="pagination:container">
+                {% if page.has_previous %}
+                <a class="pagination-action" href="?page=1"><i
+                        class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+                <a class="pagination-action"
+                    href="?page={{ page.previous_page_number }}#tab3"><i
+                        class="fa fa-angle-left" aria-hidden="true"></i></a>
+                {% endif %}
+                {% for pg in page.paginator.page_range %}
+                {% if page.number == pg %}
+                <span class="pagination-current">{{pg}}</span>
+                {% elif pg > page.number|add:'-3' and pg < page.number|add:'3' %} <a
+                    class="pagination-number" href="?page={{pg}}#tab3">{{pg}}</a>
+                    {% endif %}
+                    {% endfor %}
+                    {% if page.has_next %}
+                    <a class="pagination-action"
+                        href="?page={{page.next_page_number}}#tab3"><i
+                            class="fa fa-angle-right" aria-hidden="true"></i></a>
+                    <a class="pagination-action"
+                        href="?page={{page.paginator.num_pages}}#tab3"><i
+                            class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                    {% endif %}
+              </div>
+              
+     
+
+
+
+         </div>
+         <div id="reply-to" class="reply-to-anchor">
+            <div class="comment-form-block w-form">
+               <form id="wf-form-New-Comment" name="wf-form-New-Comment" data-name="New Comment" action="https://hook.us1.make.com/2a9z25s7kwuh1eur1s0od61u9rwa5x90" method="post" data-wf-page-id="641a03588485a15316a4ff34" data-wf-element-id="f07988cd-2a68-14aa-f8ed-2297d3802460" aria-label="New Comment">
+                  <div>
+                     <h3 class="comment-form-header">Leave a comment</h3>
+                     <p>Your comments will appear above once approved. We appreciate you!</p>
+                  </div>
+                  <div class="comment-form">
+                     <div class="flex-row">
+                        <div class="text-field-wrapper"><label for="name-2">Name</label><input type="text" class="text-field w-input" maxlength="256" name="name-2" data-name="Name 2" placeholder="e.g. Howard Thurman" id="name-2" data-ms-member="name" required=""></div>
+                        <div class="text-field-wrapper right"><label for="Website">Website <span class="optional">(Optional)</span><span class="required"></span></label><input type="text" class="text-field w-input" maxlength="256" name="Website" data-name="Website" placeholder="e.g. https://www.memberstack.com" id="Website" data-ms-member="website"></div>
+                     </div>
+                     <div><label for="Comment">Comment</label><textarea id="Comment" name="Comment" maxlength="5000" data-name="Comment" placeholder="Write your comment here. " required="" class="text-area w-input"></textarea></div>
+                     <div class="w-embed"><input type="hidden" name="cms-id" value="6424d024658b1d6956f073fb"></div>
+                     <input type="submit" value="Submit" data-wait="Please wait..." class="button cta submit w-button">
+                  </div>
+               </form>
+               <div class="comment-form-block w-form-done" tabindex="-1" role="region" aria-label="New Comment success">
+                  <div>
+                     <h3 class="comment-form-header">Thank you!</h3>
+                     <p>You comment will appear above automagically ✨</p>
+                  </div>
+                  <a data-button="refresh" href="#" class="button invert w-button">Refresh Page</a>
+               </div>
+               <div class="w-form-fail" tabindex="-1" role="region" aria-label="New Comment failure">
+                  <div>Oops! Something went wrong while submitting the form.</div>
+               </div>
+            </div>
+         </div>
+    </div>
+</div>
+
+
+{% endblock content %}

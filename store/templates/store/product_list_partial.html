@@ -1,0 +1,60 @@
+{% load static %}
+
+{% for product in products %}
+<div role="listitem" class="product-preview w-dyn-item">
+    <div class="margin-bottom margin-small">
+       <div class="product-image">
+          <a href="{% url 'product' product.id %}" class="product-preview-image-wrapper w-inline-block">
+             <img class="pic-1" loading="lazy"
+                data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_main_image_4dr%22%2C%22to%22%3A%22src%22%7D%5D"
+                src="{% static product.imageURL %}"
+                alt="Agency Magazine #1"
+                sizes="(max-width: 479px) 85vw, (max-width: 767px) 40vw, (max-width: 991px) 41vw, (max-width: 1439px) 30vw, 28vw">
+             <img class="pic-2" loading="lazy"
+                data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_main_image_4dr%22%2C%22to%22%3A%22src%22%7D%5D"
+                src="{% static product.imageURL_2 %}"
+                alt="Agency Magazine #6"
+                sizes="(max-width: 479px) 85vw, (max-width: 767px) 40vw, (max-width: 991px) 41vw, (max-width: 1439px) 30vw, 28vw"
+             >
+             </a>
+
+          <ul class="social">
+             <li><a href="{% url 'product' product.id %}" data-tip="Quick view"><i
+                      class="fa fa-search"></i></a>
+             </li>
+             <!--                        <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>-->
+             <li><a href="" data-product={{product.id}} data-action="add" class="add-btn update-cart"
+                   data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+          </ul>
+          <a href="#" data-product={{product.id}} data-action="add"
+             class="select-options add-btn update-cart">Add to Cart
+          </a>
+
+       </div>
+
+    </div>
+    <div class="margin-bottom margin-xsmall">
+       <div class="product-preview-meta">
+          <div class="w-dyn-list">
+             <div role="list" class="product-preview-categories-list w-dyn-items">
+                <div role="listitem" class="product-preview-categories-item w-dyn-item"><a
+                      href="/category/magazine" class="text-meta">{{product.category|title}}</a></div>
+             </div>
+          </div>
+          <div class="product-preview-price-wrapper">
+             <div
+                data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_price_%22%2C%22to%22%3A%22innerHTML%22%7D%5D"
+                class="product-preview-price">$&nbsp;{{product.price|floatformat:2}}&nbsp;USD</div>
+             <div
+                data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_compare_at_price_7dr10dr%22%2C%22to%22%3A%22innerHTML%22%7D%5D"
+                class="product-preview-price-compare w-dyn-bind-empty"></div>
+          </div>
+       </div>
+    </div>
+    <div class="margin-bottom margin-xsmall">
+       <a href="/product/agency-magazine-6" class="post-preview-heading w-inline-block">
+          <h5 class="opacity-hover">{{product.name}}</h5>
+       </a>
+    </div>
+ </div>
+{% endfor %}

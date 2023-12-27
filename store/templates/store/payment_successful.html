@@ -1,0 +1,23 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<section class="section_big wf-section">
+    <div class="section-inner">
+        <div class="container">
+            <div class="successful-img">
+                <img src="https://cdni.iconscout.com/illustration/premium/thumb/mobile-card-payment-successful-5796098-4841252.png"
+                    alt="Payment Successful">
+            </div>
+            <h4>Your payment has been received.</h4>
+            <p>We have received your order and will prepare the process for shippment. Please check your payment
+                confirmation & invoice.</p>
+            <a href="{% url 'order_summary' %}" class="btn-view-orders">
+                View Orders
+            </a>
+
+            <a class="view-order-subtext" href="/">Continue Shopping</a>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

@@ -1,0 +1,52 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<section style="background-color:transparent">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-9">
+                <div class="panel panel-default ">
+                    <div class="panel-heading c-list">
+                        {% if product %}
+                        <span class="title">Found search results for: </span>
+                        <h1>"{{search}}"</h1>
+                        {% else %}
+                        <span class="title">No results were found for: </span>
+                        <h1>"{{search}}"</h1> {% endif %}
+                    </div>
+                </div>
+                <ul class="list-group" id="contact-list">
+                    {% for p in product %}
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-3">
+                                <a href="{% url 'product' p.id %}">
+                                <img src="{{p.imageURL}}" alt="" class="img-responsive"><a href="{% url 'product' p.id %}"></img>
+                                </a>
+                            </div>
+                            <div class="col-xs-12 col-sm-9">
+                                <a href="{% url 'product' p.id %}">
+                                <span href="{% url 'product' p.id %}" class="name">{{p.name}}</span>
+                                </a>
+                                <div>
+                                    <a href="" data-product={{p.id}} data-action="add" data-tip="Add to Cart"
+                                       class="fa fa-shopping-cart add-btn update-cart text-muted" data-toggle="tooltip"
+                                       title="Add To Cart"></a>
+                                    <a href="{% url 'product' p.id %}" class="fa fa-search text-muted c-info"
+                                       data-toggle="tooltip" title="View"></a>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+
+
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+</section>
+{% endblock content %}

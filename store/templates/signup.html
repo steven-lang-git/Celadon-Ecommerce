@@ -1,0 +1,191 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block title %} Sign Up {% endblock %}
+{% block content %}
+
+
+
+<div class="dem-section-10">
+    <div class="dem-container-1">
+       <div class="dem-wrap-1">
+          <div class="dem-wrap-2">
+              <a href="#" class="dem-wrap-4 w-inline-block">
+                  <img src="{% static 'images/celadon-white-logo.png' %}" loading="lazy" alt="" class="dem-logo-1">
+             </a>
+         </div>
+          <div class="dem-wrap-3">
+            <div class="ms-form-block w-form">
+                <form action="{% url 'signup' %}" method="post" >
+                    <h2 class="ms-form-heading">Create an Account</h2>
+                    <div class="ms-form-description">Please complete the form below to create your account. You can add a business later. </div>
+                    {% csrf_token %}
+                    {% for non_field_error in form.non_field_errors %}
+                    <p class="help is-danger">{{
+                        non_field_error}}</p>
+                    {% endfor %}
+                    {% for field in form %}
+                    <div class="field fadeIn">
+                        {{ field.label_tag}}<br>
+                        {{ field }}
+                        {% for error in field.errors %}
+                        <p style="color: red">{{error}}</p>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                    <br>
+                    <div class="ms-list-container">
+                        <label data-ms-member="consent" class="w-checkbox ms-checkbox-wrap is-smaller">
+                           <div class="w-checkbox-input w-checkbox-input--inputType-custom ms-checkbox"></div>
+                           <input type="checkbox" id="Terms-Two-2" name="Terms-Two-2" data-name="Terms Two 2" required="" style="opacity:0;position:absolute;z-index:-1"><span class="ms-checkbox-label w-form-label" for="Terms-Two-2">I agree to the <a href="#" class="ms-link">Terms of Use</a> &amp;&nbsp;<a href="#" class="ms-link">Privacy policy</a>.</span>
+                        </label>
+                        <label class="w-checkbox ms-checkbox-wrap is-smaller">
+                           <div class="w-checkbox-input w-checkbox-input--inputType-custom ms-checkbox"></div>
+                           <input type="checkbox" id="Subscribe-Two-2" name="Subscribe-Two-2" data-name="Subscribe Two 2" data-ms-member="subscribe" style="opacity:0;position:absolute;z-index:-1"><span class="ms-checkbox-label w-form-label" for="Subscribe-Two-2">Send me product updates</span>
+                        </label>
+                     </div>
+                    <input type="submit" value="Submit" data-wait="Please wait..." class="ms-button is-form w-button">
+                    <div>
+                        <div class="ms-form-divider">
+                           <div class="ms-form-divider-line"></div>
+                           <div class="ms-form-divider-text">OR</div>
+                           <div class="ms-form-divider-line"></div>
+                        </div>
+                        <a data-ms-auth-provider="google" href="#" class="ms-social-button w-inline-block">
+                           <div class="ms-social-inner">
+                              <img loading="lazy" src="https://assets.website-files.com/647740e9c2d1b4f3ef4c39fa/647742218f17ddf64296bdfc_google.svg" alt="" class="ms-social-image">
+                              <div data-ms-auth-connected-text="Disconnect Google" class="ms-social-text">Continue with Google</div>
+                           </div>
+                        </a>
+                        <a data-ms-auth-provider="facebook" href="#" class="ms-social-button is-facebook w-inline-block">
+                           <div class="ms-social-inner">
+                              <img loading="lazy" src="https://assets.website-files.com/647740e9c2d1b4f3ef4c39fa/647742218f17ddf64296bdfd_facebook.svg" alt="" class="ms-social-image">
+                              <div data-ms-auth-connected-text="Disconnect Facebook" class="ms-social-text">Continue with Facebook</div>
+                           </div>
+                        </a>
+                     </div>
+                     <div class="ms-space _20"></div>
+                     <div>Already have an account? <a href="/login" class="ms-link">Login here</a><a href="/signup"></a></div>
+                </form>
+                <!-- <form id="wf-form-Signup-Form-Two" name="wf-form-Signup-Form-Two" data-name="Signup Form Two" method="get" data-ms-form="signup" class="ms-form" aria-label="Signup Form Two">
+                   <h2 class="ms-form-heading">Create an Account</h2>
+                   <div class="ms-form-description">Please complete the form below to create your account. You can add a business later. </div>
+                   <div><label for="Name" class="ms-input-label">Name</label><input type="text" class="ms-input w-input" maxlength="256" name="Name" data-name="Name" placeholder="e.g. Howard Thurman" id="Name" data-ms-member="name" required=""></div>
+                   <div><label for="Email-Two-2" class="ms-input-label">Email Address</label><input type="email" class="ms-input w-input" maxlength="256" name="Email-Two-2" data-name="Email Two 2" placeholder="e.g. howard@gmail.com" id="Email-Two-2" data-ms-member="email" required=""></div>
+                   <div><label for="Password-Two-2" class="ms-input-label">Password Input</label><input type="password" class="ms-input w-input" maxlength="256" name="Password-Two-2" data-name="Password Two 2" placeholder="⁕ ⁕ ⁕ ⁕ ⁕ ⁕ ⁕ ⁕" id="Password-Two-2" data-ms-member="password" required=""></div>
+                   <div class="ms-list-container">
+                      <label data-ms-member="consent" class="w-checkbox ms-checkbox-wrap is-smaller">
+                         <div class="w-checkbox-input w-checkbox-input--inputType-custom ms-checkbox"></div>
+                         <input type="checkbox" id="Terms-Two-2" name="Terms-Two-2" data-name="Terms Two 2" required="" style="opacity:0;position:absolute;z-index:-1"><span class="ms-checkbox-label w-form-label" for="Terms-Two-2">I agree to the <a href="#" class="ms-link">Terms of Use</a> &amp;&nbsp;<a href="#" class="ms-link">Privacy policy</a>.</span>
+                      </label>
+                      <label class="w-checkbox ms-checkbox-wrap is-smaller">
+                         <div class="w-checkbox-input w-checkbox-input--inputType-custom ms-checkbox"></div>
+                         <input type="checkbox" id="Subscribe-Two-2" name="Subscribe-Two-2" data-name="Subscribe Two 2" data-ms-member="subscribe" style="opacity:0;position:absolute;z-index:-1"><span class="ms-checkbox-label w-form-label" for="Subscribe-Two-2">Send me product updates</span>
+                      </label>
+                   </div>
+                   <input type="submit" value="Submit" data-wait="Please wait..." class="ms-button is-form w-button">
+  
+                </form> -->
+                <div class="w-form-done" tabindex="-1" role="region" aria-label="Signup Form Two success">
+                   <div>Thank you! Your submission has been received!</div>
+                </div>
+                <div class="w-form-fail" tabindex="-1" role="region" aria-label="Signup Form Two failure">
+                   <div>Oops! Something went wrong while submitting the form.</div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+
+
+
+
+
+
+<!-- <section style="background:transparent">
+<div id="formContent">
+    <div class="container">
+        <div class="columns is-mobile">
+            <div class="column is-half is-offset-one-quarter">
+                <div class="content" style="padding-top:25px;padding-bottom:25px;">
+                    <h2 class="align-center pb-3 display-2" style="margin-top:25px;"> Register</h2>
+                </div>
+                {% if messages %}
+                {% for message in messages %}
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                    <div class="alert alert-success" role="alert">
+                        {{message}}
+                    </div>
+                    {% endif %}
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                    <div class="alert alert-danger" role="alert">
+                        {{message}}
+                    </div>
+                    {% endif %}
+                {% endfor %}
+                {% endif %} 
+                <form action="{% url 'signup' %}" method="post">
+                    {% csrf_token %}
+                    {% for non_field_error in form.non_field_errors %}
+                    <p class="help is-danger">{{
+                        non_field_error}}</p>
+                    {% endfor %}
+                    {% for field in form %}
+                    <div class="field fadeIn">
+                        {{ field.label_tag}}<br>
+                        {{ field }}
+                        {% for error in field.errors %}
+                        <p style="color: red">{{error}}</p>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                    <br>
+                    <input type="submit" value="SIGN UP" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</section> -->
+
+
+<!--<section style="background:transparent">-->
+<!--    <div id="formContent">-->
+<!--        <div class="fadeIn first" style="padding-top:25px">-->
+<!--            <h2 style="margin-top:25px">Member Login</h2>-->
+<!--        </div>-->
+<!--        <div class="fadeIn first" style="padding-top:25px;padding-bottom:25px;">-->
+<!--            <i class="fa fa-user-circle" id="icon" alt="User Icon" style="font-size:32px"></i>-->
+<!--        </div>-->
+<!--        <form method="post" id="form_login">-->
+<!--            &lt;!&ndash;tags for security concerns, namely to prevent CSRF attack &ndash;&gt;-->
+<!--            {%csrf_token %}-->
+<!--            &lt;!&ndash;        {{ form.as_p}}&ndash;&gt;-->
+<!--            <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">-->
+<!--            <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">-->
+<!--            <input type="submit" class="fadeIn fourth" value="Log In">-->
+<!--            &lt;!&ndash;        <button type="submit" class="btn btn-primary">Login</button>&ndash;&gt;-->
+<!--        </form>-->
+<!--        <p>&nbsp;</p>-->
+<!--        <div id="formFooter">-->
+<!--            <a href="{% url 'signup' %}">-->
+<!--                Don't have an account? Sign up here.-->
+<!--            </a>-->
+<!--        </div>-->
+
+<!--    </div>-->
+<!--</section>-->
+<script>
+    $(document).ready(function() {
+        // messages timeout for 10 sec 
+        setTimeout(function() {
+            $('.alert').fadeOut('slow');
+        }, 3000); // <-- time in milliseconds, 1000 =  1 sec
+
+        // delete message
+        $('.del-msg').live('click',function(){
+            $('.del-msg').parent().attr('style', 'display:none;');
+        })
+    });
+</script>
+{% endblock content %}

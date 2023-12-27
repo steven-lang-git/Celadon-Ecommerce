@@ -1,0 +1,299 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<div class="section-store">
+   <div data-w-id="755a1244-e7a5-cfa3-7e19-76425e6668ba" class="container-cta"
+      style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; opacity: 1;">
+      <div class="cta-left">
+         <div class="carousel-wrapper">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+               <div class="carousel-inner">
+                  <div class="carousel-item active">
+                     <img src="{% static 'images/c-1.jpg'%}" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                     <img src="{% static 'images/c-2.jpg'%}" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                     <img src="{% static 'images/c-3.jpg'%}" class="d-block w-100" alt="...">
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="overlay cta"></div>
+         <div data-w-id="755a1244-e7a5-cfa3-7e19-76425e6668bd" class="cta-text-wrapper text-color-white"
+            style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; opacity: 1;">
+            <div class="margin-bottom-24">
+               <h2 class="h2-heading">Shop with our latest collection.</h2>
+            </div>
+            <p class="paragraph-large">Discover the true meaning of luxury as you immerse yourself in a world of
+               unmatched elegance.</p>
+            <div class="cta-button-wrapper">
+               <a href="#store-section" class="button w-inline-block">
+                  <div>Explore</div>
+                  <div class="icon-regular w-embed">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path
+                           d="M15.187 11.2362L11.0895 7.13873L12.1696 6.05859L18.1111 12.0001L12.1696 17.9416L11.0895 16.8615L15.187 12.764H5.88892V11.2362H15.187Z"
+                           fill="currentColor"></path>
+                     </svg>
+                  </div>
+               </a>
+            </div>
+         </div>
+      </div>
+      <div class="cta-right">
+         <div data-w-id="755a1244-e7a5-cfa3-7e19-76425e6668c9" class="cta-image-card"
+            style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; opacity: 1;">
+            <img
+               src="https://assets.website-files.com/6333ba9ce586f2bb1ee80ef1/6347eff9ff5e87758e1b54ec_CTA%20Image.webp"
+               loading="lazy" sizes="(max-width: 767px) 75vw, (max-width: 991px) 472px, 38vw"
+               srcset="https://assets.website-files.com/6333ba9ce586f2bb1ee80ef1/6347eff9ff5e87758e1b54ec_CTA%20Image-p-500.webp 500w, https://assets.website-files.com/6333ba9ce586f2bb1ee80ef1/6347eff9ff5e87758e1b54ec_CTA%20Image-p-800.webp 800w, https://assets.website-files.com/6333ba9ce586f2bb1ee80ef1/6347eff9ff5e87758e1b54ec_CTA%20Image.webp 892w"
+               alt="" class="image-cover">
+         </div>
+
+      </div>
+   </div>
+</div>
+
+<div class="section-small" id="store-section">
+   <div class="container-regular">
+
+
+      <div class="w-layout-grid all-product-grid"
+         style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; opacity: 1;">
+         <div id="w-node-_75a28991-4af8-09f7-1411-b3822cb002d6-11e80ef9" class="category-link-wrapper">
+            <div class="product-title-wrapper"
+               style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; opacity: 1;">
+               <div class="overline">SHOP</div>
+
+            </div>
+            <div class="w-dyn-list">
+               <div role="list" class="category-link-grid w-dyn-items">
+                  {% for category in categories %}
+                  <div role="listitem" class="w-dyn-item">
+                     <a href="{% url 'category' id=category.id %}" class="category-link w-inline-block">
+                        <div>
+                           {{category.name}}
+                        </div>
+                     </a>
+                  </div>
+
+                  {% endfor %}
+               </div>
+            </div>
+         </div>
+         <div class="product-content">
+            <div class="above-all-product-grid">
+               <p class="woocommerce-result-count">
+                  Showing {{page.number}}–{{page.paginator.num_pages}} results</p>
+               <form class="woocommerce-ordering" method="get" id="sort-form">
+                  <select name="orderby" class="orderby" aria-label="Shop order" id="sort-select">
+                     <option value="latest" {% if sort_order == 'latest' %}selected{% endif %}>Sort by Latest</option>
+                     <option value="lowest_price" {% if sort_order == 'lowest_price' %}selected{% endif %}>Sort by Lowest Price</option>
+                     <option value="highest_price" {% if sort_order == 'highest_price' %}selected{% endif %}>Sort by Highest Price</option>
+                  </select>
+                  <input type="hidden" name="paged" value="1">
+               </form>
+            </div>
+            <div class="product-list w-dyn-list">
+               <div id="product-list" role="list" class="category-grid w-dyn-items">
+                  {% if products %}
+                     {% for product in products %}
+                     <div role="listitem" class="product-preview w-dyn-item">
+                        <div class="margin-bottom margin-small">
+                           <div class="product-image">
+                              <a href="{% url 'product' product.id %}"
+                                 class="product-preview-image-wrapper w-inline-block">
+                                 <img class="pic-1" loading="lazy"
+                                    data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_main_image_4dr%22%2C%22to%22%3A%22src%22%7D%5D"
+                                    src="{% static product.imageURL %}" alt="Agency Magazine #1"
+                                    sizes="(max-width: 479px) 85vw, (max-width: 767px) 40vw, (max-width: 991px) 41vw, (max-width: 1439px) 30vw, 28vw">
+                                 <img class="pic-2" loading="lazy"
+                                    data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_main_image_4dr%22%2C%22to%22%3A%22src%22%7D%5D"
+                                    src="{% static product.imageURL_2 %}" alt="Agency Magazine #6"
+                                    sizes="(max-width: 479px) 85vw, (max-width: 767px) 40vw, (max-width: 991px) 41vw, (max-width: 1439px) 30vw, 28vw">
+                              </a>
+
+                              <ul class="social">
+                                 <li><a href="{% url 'product' product.id %}" data-tip="Quick view"><i
+                                          class="fa fa-search"></i></a>
+                                 </li>
+                                 <!--                        <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>-->
+                                 <li><a href="" data-product={{product.id}} data-action="add" class="add-btn update-cart"
+                                       data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                              </ul>
+                              <a href="#" data-product={{product.id}} data-action="add"
+                                 class="select-options add-btn update-cart">Add to Cart
+                              </a>
+
+                           </div>
+
+                        </div>
+                        <div class="margin-bottom margin-xsmall">
+                           <div class="product-preview-meta">
+                              <div class="w-dyn-list">
+                                 <div role="list" class="product-preview-categories-list w-dyn-items">
+                                    <div role="listitem" class="product-preview-categories-item w-dyn-item"><a
+                                          href="/category/magazine" class="text-meta">{{product.category|title}}</a></div>
+                                 </div>
+                              </div>
+                              <div class="product-preview-price-wrapper">
+                                 <div
+                                    data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_price_%22%2C%22to%22%3A%22innerHTML%22%7D%5D"
+                                    class="product-preview-price">$&nbsp;{{product.price|floatformat:2}}&nbsp;USD</div>
+                                 <div
+                                    data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_compare_at_price_7dr10dr%22%2C%22to%22%3A%22innerHTML%22%7D%5D"
+                                    class="product-preview-price-compare w-dyn-bind-empty"></div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="margin-bottom margin-xsmall">
+                           <a href="/product/agency-magazine-6" class="post-preview-heading w-inline-block">
+                              <h5 class="opacity-hover">{{product.name}}</h5>
+                           </a>
+                        </div>
+                     </div>
+                     {% endfor %}
+                  {% else %}
+                     <p>No products available.</p>
+                  {% endif %}
+               </div>
+            </div>
+         </div>
+         <div role="navigation" aria-label="List" class="w-pagination-wrapper pagination"></div>
+      </div>
+   </div>
+</div>
+</div>
+
+
+
+
+
+
+<!-- <ul class="rating">
+            <i class="fa fa-star{% if product.avg_rating < 1 %}-o empty{% endif %}"></i>
+            <i class="fa fa-star{% if product.avg_rating < 2 %}-o empty{% endif %}"></i>
+            <i class="fa fa-star{% if product.avg_rating < 3 %}-o empty{% endif %}"></i>
+            <i class="fa fa-star{% if product.avg_rating < 4 %}-o empty{% endif %}"></i>
+            <i class="fa fa-star{% if product.avg_rating < 5 %}-o empty{% endif %}"></i>
+            <span style="color:#90D7A5"><strong>({{product.testLength}})</strong></span>
+
+        </ul> -->
+<nav>
+   <!-- <ul class="pagination justify-content-center">
+      {% if page.has_previous %}
+      <a class="pagination-action" href="?page=1"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+      <a class="pagination-action" href="?page={{ page.previous_page_number }}"><i class="fa fa-angle-left"
+            aria-hidden="true"></i></a>
+      {% endif %}
+      {% for pg in page.paginator.page_range %}
+      {% if page.number == pg %}
+      <span class="pagination-current">{{pg}}</span>
+      {% elif pg > page.number|add:'-3' and pg < page.number|add:'3' %} <a class="pagination-number"
+         href="?page={{pg}}">{{pg}}</a>
+         {% endif %}
+         {% endfor %}
+         {% if page.has_next %}
+         <a class="pagination-action" href="?page={{page.next_page_number}}"><i class="fa fa-angle-right"
+               aria-hidden="true"></i></a>
+         <a class="pagination-action" href="?page={{page.paginator.num_pages}}"><i class="fa fa-angle-double-right"
+               aria-hidden="true"></i></a>
+         {% endif %}
+   </ul> -->
+</nav>
+</div>
+
+
+<!--<div class="products">-->
+<!--    {% for product in page.object_list %}-->
+<!--    <div class="col-lg-4">-->
+
+
+<!--        <div class="box-element product">-->
+<!--            <h6><strong>{{product.name}}</strong></h6>-->
+
+<!--            <div class="row mb-3">-->
+<!--                <div class="col-8">-->
+<!--                    <span class="badge badge-pill badge-primary"-->
+<!--                          style="text-transform:capitalize">{{product.category}} </span>-->
+
+<!--                </div>-->
+
+
+<!--                <div class="col-4">-->
+<!--                    <span class="money"><strong>${{product.price|floatformat:2}}</strong></span>-->
+
+<!--                </div>-->
+<!--            </div>-->
+
+
+<!--            <div class="center">-->
+<!--                <img class="thumbnail" src="{{product.imageURL}}">-->
+<!--            </div>-->
+
+<!--            <hr>-->
+<!--            <div class="right">-->
+
+<!--                <i class="fa fa-star{% if product.avg_rating < 1 %}-o empty{% endif %}"></i>-->
+<!--                <i class="fa fa-star{% if product.avg_rating < 2 %}-o empty{% endif %}"></i>-->
+<!--                <i class="fa fa-star{% if product.avg_rating < 3 %}-o empty{% endif %}"></i>-->
+<!--                <i class="fa fa-star{% if product.avg_rating < 4 %}-o empty{% endif %}"></i>-->
+<!--                <i class="fa fa-star{% if product.avg_rating < 5 %}-o empty{% endif %}"></i>-->
+<!--                <p><strong>({{product.testLength}})</strong></p>-->
+<!--            </div>-->
+<!--            <h6> Product ID#{{product.id}} </h6>-->
+
+<!--            <h5> Description</h5>-->
+<!--            <div class="center">-->
+<!--                <button data-product={{product.id}} data-action="add" class="btn btn-dark add-btn update-cart">Add to-->
+<!--                    Cart-->
+<!--                </button>-->
+<!--                <a class="btn btn-outline-secondary" href="{% url 'product' product.id %}">View</a></div>-->
+<!--        </div>-->
+
+<!--    </div>-->
+<!--    {% endfor %}-->
+<!--</div>-->
+
+
+<!--<div class="page-number">-->
+
+<!--    <ul class="reviews-pages" style="text-align:center">-->
+
+<!--        {% if page.has_previous %}-->
+<!--        <li><a href="?page=1"><i class="fa fa-angle-double-left"></i></a></li>-->
+<!--        <li><a href="?page={{ page.previous_page_number }}"><i class="fa fa-caret-left"></i></a></li>-->
+<!--        {% endif %}-->
+<!--        <li>Page {{page.number}} of {{page.paginator.num_pages}}</li>-->
+<!--        {% if page.has_next %}-->
+<!--        <li><a href="?page={{page.next_page_number}}"><i class="fa fa-caret-right"></i></a></li>-->
+<!--        <li><a href="?page={{ page.paginator.num_pages}}"><i class="fa fa-angle-double-right"></i></a>-->
+<!--        </li>-->
+
+<!--        {% endif %}-->
+<!--    </ul>-->
+
+
+<!--</div>-->
+<script>
+   const sortSelect = document.getElementById('sort-select');
+   const sortForm = document.getElementById('sort-form');
+   const sortHeading = document.getElementById('sort-heading');
+
+   sortSelect.addEventListener('change', function () {
+      sortForm.submit();
+   });
+
+   sortSelect.addEventListener('input', function () {
+      const selectedOption = sortSelect.options[sortSelect.selectedIndex];
+      const slug = selectedOption.value;
+      sortHeading.textContent = `Products Sorted by ${selectedOption.textContent}`;
+      history.pushState(null, '', `?sort=${slug}`);
+   });
+</script>
+{% endblock content %}

@@ -1,0 +1,73 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="dem-section-1">
+   <div class="dem-container-1">
+      <div class="dem-wrap-1">
+         <div class="dem-wrap-2">
+             <a href="#" class="dem-wrap-4 w-inline-block">
+                 <img src="{% static 'images/celadon-white-logo.png' %}" loading="lazy" alt="" class="dem-logo-1">
+            </a>
+        </div>
+         <div class="dem-wrap-3">
+            <div class="dem-wrap-5">
+               <h2 class="dem-heading-1">Log In</h2>
+            </div>
+            <div class="dem-wrap-6">
+               <div class="dem-text-1">Don’t have an account yet?</div>
+               <a href="{% url 'signup' %}" class="dem-link-1">Sign Up Here</a>
+            </div>
+            <div class="dem-wrap-7">
+               <div class="dem-form-block-1 w-form">
+                  
+                <form method="post" id="form_login" class="dem-form-1">
+                    {%csrf_token%}
+
+                     <div class="dem-form-2">
+                        {{ form.as_p}}
+           
+                        <!-- <input type="text" class="dem-imput-1 w-input" maxlength="256" name="field" data-name="Field" placeholder="Username or Email" id="field" required="">
+                        <input type="text" class="dem-imput-1 w-input" maxlength="256" name="field-2" data-name="Field 2" placeholder="Password" id="field-2" required=""> -->
+                        <div class="dem-wrap-8">
+                            <a href="#" class="dem-link-2">Forgot your password?</a>
+                            <input type="submit" value="Log In" data-wait="Please wait..." class="ms-button w-button">
+
+                     </div>
+                  </form>
+                  <div class="w-form-done" tabindex="-1" role="region" aria-label="Email Form success">
+                     <div>Thank you! Your submission has been received!</div>
+                  </div>
+                  <div class="w-form-fail" tabindex="-1" role="region" aria-label="Email Form failure">
+                     <div>Oops! Something went wrong while submitting the form.</div>
+                  </div>
+               </div>
+            </div>
+            <div class="dem-wrap-9">
+               <div class="dem-wrap-10"></div>
+               <div class="dem-text-3">Or</div>
+               <div class="dem-wrap-10"></div>
+            </div>
+            <div class="dem-wrap-1-1">
+               <a href="#" class="dem-button-2 w-inline-block">
+                  <img src="https://assets.website-files.com/63f6a0b1ff599d0f25cf0908/63f6a22a688ed3a7429dcf53_Group%20861-5.png" loading="lazy" alt="" class="dem-icon-1">
+                  <div class="dem-text-4">Continue with Apple</div>
+               </a>
+               <a href="#" class="dem-button-3 w-inline-block">
+                  <img src="https://assets.website-files.com/63f6a0b1ff599d0f25cf0908/63f6a22a688ed33a759dcf55_icons8-logo-de-google%202.png" loading="lazy" alt="" class="dem-icon-1">
+                  <div class="dem-text-4">Continue with Apple</div>
+               </a>
+               <a href="#" class="dem-button-4 w-inline-block">
+                  <img src="https://assets.website-files.com/63f6a0b1ff599d0f25cf0908/63f6a22a688ed39e569dcf57_Vector-22.png" loading="lazy" alt="" class="dem-icon-1 do">
+                  <div class="dem-text-4">Continue with Apple</div>
+               </a>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+
+
+{% endblock content %}

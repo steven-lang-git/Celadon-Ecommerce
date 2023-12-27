@@ -1,0 +1,316 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<!--block content-->
+
+<div class="main-cart-section main-cart-section_0 cart-background enhanced-section">
+    <div class="cart-row cart_gap2 cart-row_1-4_1-2_1-4">
+        <div
+            class="cart-section cart-column cart-column_1_4 cart-column_0 mix-blend-passthrough cart-column_single">
+            <div
+                class="enhanced_module snippet snippet_0 clickable-component  text-align-left  snippet_position_left bg-layout_light">
+                <div class="snippet_content">
+                    <div class="main-snippet-img"><span class="image-wrap"><span
+                                class="scroll-trigger animation_off animation_off_tablet animation_off_phone styled-icon animated"><i
+                                    class="fa fa-shopping-bag" aria-hidden="true"></i>
+                            </span></span>
+                    </div>
+                    <div class="snippet_container">
+                        <h4 class="enhanced_module_header"><span>Shop</span></h4>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="enhanced_module snippet snippet_1 clickable-component  text-align-left  snippet_position_left bg-layout_light">
+                <div class="snippet_content">
+                    <div class="main-snippet-img"><span class="image-wrap"><span
+                                class="scroll-trigger animation_off animation_off_tablet animation_off_phone styled-icon animated"><i
+                                    class="fa fa-shopping-cart"></i></span></span>
+                    </div>
+                    <div class="snippet_container">
+                        <h4 class="enhanced_module_header"><span>Cart</span></h4>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="enhanced_module snippet snippet_2 clickable-component  text-align-left  snippet_position_left bg-layout_light">
+                <div class="snippet_content">
+                    <div class="main-snippet-img"><span class="image-wrap"><span
+                                class="scroll-trigger animation_off animation_off_tablet animation_off_phone styled-icon animated"><i
+                                    class="fa fa-credit-card" aria-hidden="true"></i></span></span>
+                    </div>
+                    <div class="snippet_container">
+                        <h4 class="enhanced_module_header"><span>Checkout</span></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            class="cart-column cart-column_1_2 cart-column_1   specialty-element  mix-blend-passthrough">
+            <div class="bordered_element cart-row_inner cart-row_inner_0">
+                <div class="cart-column cart-column_4_4 cart-column_inner cart-column_inner_0 et-last-child">
+                    <div
+                        class="enhanced_module cart_notice cart_notice_0 commerce fields_layout bg-layout  text-align-left">
+                        <div class="enhanced_module_inner">
+                            <div class="notice-wrapper"></div>
+                        </div>
+                    </div>
+                    <div
+                        class="enhanced_module post_title post_title bg-layout_dark  text-align-left">
+                        <div class="title_container">
+                            <h2 class="shop-details-title">Cart</h2>
+                        </div>
+                    </div>
+                    <div
+                        class="bordered_element enhanced_module cart-products cart-products_0 commerce-cart commerce cart-row_layout_default">
+                        <div class="enhanced_module_inner">
+                            <form method="post" id="myForm">
+                                {% csrf_token %}
+
+                                <table class="shop_table shop_table_responsive cart commerce-cart-form__contents"
+                                    cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th class="product-remove"><span class="screen-reader-text">Remove
+                                                    item</span></th>
+                                            <th class="product-thumbnail"><span class="screen-reader-text">Thumbnail
+                                                    image</span></th>
+                                            <th class="product-name">Product</th>
+                                            <th class="product-price">Price</th>
+                                            <th class="product-quantity">Quantity</th>
+                                            <th class="product-subtotal">Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for item in items %}
+                                        <form data-node-type="commerce-add-to-cart-form"
+                                        data-commerce-sku-id="{{ item.product.id }}"
+                                        data-loading-text="Updating cart..."
+                                        data-commerce-product-id="{{ item.product.id }}"
+                                        class="add-to-cart-form default-state-2">
+                                      
+                                      {% csrf_token %}
+                                        <tr class="commerce-cart-form__cart-item cart_item">
+                                            <td class="product-remove">
+
+                                                <button data-product={{item.product.id}} data-action="delete"
+                                                    class="add-btn update-cart">×</button>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <a href="{% url 'product' item.product.id %}">
+
+                                                    <img width="300" height="300"
+                                                        src="{% static item.product.imageURL %}"
+                                                        class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+                                                        alt="" decoding="async" loading="lazy">
+
+
+                                                </a>
+                                            </td>
+                                            <td class="product-name" data-title="Product">
+                                                <a href="{% url 'product' item.product.id %}">{{item.product.name}}</a>
+                                            </td>
+                                            <td class="product-price" data-title="Price">
+                                                <span class="commerce-Price-amount amount"><bdi><span
+                                                            class="commerce-Price-currencySymbol">$</span>{{item.product.price|floatformat:2}}</bdi></span>
+                                            </td>
+                                            <td class="product-quantity" data-title="Quantity">
+
+                                                <div class="quantity">
+                                                    <div class="number-input">
+
+                                                        <button data-product={{item.product.id}} data-action="decrement"
+                                                            class="add-btn minus update-cart "></button>
+
+                                                        <input type="number" id="quantity_64cd98e6b7a71"
+                                                            class="input-text qty text" min="0" name="quantity"
+                                                            value={{item.quantity}} type="number">
+                                                        <button data-product={{item.product.id}} data-action="increment"
+                                                            class="add-btn plus update-cart"></button>
+
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="product-subtotal" data-title="Subtotal">
+                                                <span class="commerce-Price-amount amount"><bdi><span
+                                                            class="commerce-Price-currencySymbol">$</span>{{item.get_total|floatformat:2}}</bdi></span>
+                                            </td>
+                                        </tr>
+                                        </form>
+                                        {% endfor %}
+
+                                        <tr>
+                                            <td colspan="6" class="actions">
+                                                <form method="post" class="coupon-form">
+                                                    <div class="coupon">
+                                                        {% csrf_token %}
+                                                        <label for="coupon_code"
+                                                            class="screen-reader-text">Coupon:</label>
+                                                        <input class="input-text" type="text" name="code"
+                                                            placeholder="Enter coupon code">
+                                                        <button type="submit" class="button" name="apply_coupon"
+                                                            value="Apply coupon">Apply coupon</button>
+                                                    </div>
+                                                </form>
+                                                {% if coupon_form.is_valid %}
+                                                <div class="coupon-applied">
+                                                    <p>Coupon code applied: {{ coupon_form.cleaned_data.code }}</p>
+                                                </div>
+                                                {% endif %}
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                            <div class="cart-collaterals">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div
+            class="cart-total-section cart-column cart-column_1_4 cart-column_2 mix-blend-passthrough cart-column_single">
+            <div
+                class="bordered_element enhanced_module cart-totals cart-totals_0 commerce-cart">
+                <div class="enhanced_module_inner">
+                    <div class="cart_totals ">
+                        <h2 class="shop-details-title">Cart totals</h2>
+                        <table cellspacing="0" class="shop_table shop_table_responsive">
+                            <tbody>
+                                <tr class="cart-subtotal">
+                                    <th>Subtotal</th>
+                                    <td data-title="Subtotal"><span class="commerce-Price-amount amount"><bdi><span
+                                                    class="commerce-Price-currencySymbol">$</span>{{total|floatformat:2}}</bdi></span>
+                                    </td>
+                                </tr>
+                                <tr class="order-total">
+                                    <th>Total</th>
+                                    <td data-title="Total"><strong><span
+                                                class="commerce-Price-amount amount"><bdi><span
+                                                        class="commerce-Price-currencySymbol">$</span>{{total|floatformat:2}}</bdi></span></strong>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        {% if messages %}
+                        {% for message in messages %}
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                        <div class="alert alert-success" role="alert">
+                            {{message}}
+                        </div>
+                        <div class="proceed-checkout">
+                            <a href="{% url 'checkout' %}" class="checkout-button button alt wc-forward">
+                                Proceed to checkout</a>
+                        </div>
+
+
+                        {% endif %}
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                        <div class="alert alert-danger" role="alert">
+                            {{message}}
+                        </div>
+                        <div class="proceed-checkout">
+                            <a href="{% url 'store' %}" class="checkout-button button alt wc-forward" disabled>Return to
+                                store</a>
+                        </div>
+
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // messages timeout for 10 sec 
+        setTimeout(function () {
+            $('.alert').fadeOut('slow');
+        }, 3000); // <-- time in milliseconds, 1000 =  1 sec
+
+        // delete message
+        $('.del-msg').live('click', function () {
+            $('.del-msg').parent().attr('style', 'display:none;');
+        })
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        console.log("anything?")
+        $('#ship-meth').submit(function (event) {
+            event.preventDefault();
+            var selected_ship = $('input[name="ship-radio"]:checked').val();
+            console.log(selected_ship)
+            // $(this).attr('action', 'update-ship')
+            $(this).unbind('submit').submit();
+        })
+    })
+</script>
+<script type="text/javascript">
+    function shipmefs() {
+        shipDisplay = document.querySelector('input[name="shipping_method"]:checked').value;
+        // document.getElementById("myForm").submit();
+
+        console.log(shipDisplay);
+        // document.querySelector("#selectedShips").textContent=shipDisplay;
+        Cookies.set('RemoveCount', 'true');
+        if (Cookies.get('RemoveCount') == 'true' && Cookies.get('RemoveCount') != 'undefined') {
+            if (shipDisplay == "option1") {
+                document.getElementById("id_shipping_method_0").remove();
+                document.getElementById('ship_mef_2').remove();
+                document.getElementById('ship_mef_3').remove();
+
+            }
+            if (shipDisplay == "option2") {
+                document.getElementById("id_shipping_method_1").remove();
+                document.getElementById('ship_mef_1').remove();
+                document.getElementById('ship_mef_3').remove();
+            }
+            if (shipDisplay == "option3") {
+                document.getElementById("id_shipping_method_2").remove();
+                document.getElementById('ship_mef_2').remove();
+                document.getElementById('ship_mef_1').remove();
+            }
+        } else {
+            $("#count").show();
+        }
+
+
+
+    }
+</script>
+<script>
+    $(function () {
+
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var url = data.result.docs[i].source.enriched.url.url;
+        $("#send-my-url-to-django-button").click(function () {
+            $.ajax({
+                url: "/process_url_from_client",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    url: url,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function (json) {
+                    alert("Successfully sent the URL to Django");
+                },
+                error: function (xhr, errmsg, err) {
+                    alert("Could not send URL to Django. Error: " + xhr.status + ": " + xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
+{% endblock content %}

@@ -1,0 +1,129 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="main-section wf-section">
+    <div class="profile-columns">
+        <div class="profile-nav-wrap">
+            <h4 class="h4">{{user.username|capfirst}}</h4>
+            <div class="text-secondary"> {{user.email}} </div>
+            <div class="field-divider"></div>
+            <div class="spacer-xs"></div>
+            <a href="#" data-ms-action="customer-portal" class="profile-nav-link">Billing</a>
+            <div class="relative-block"><a data-ms-action="logout" href="#" class="profile-nav-link">Log out</a></div>
+        </div>
+        <div class="main-container">
+            <div class="w-form">
+                <form id="wf-form-signup" name="wf-form-signup" data-name="signup" method="POST" data-ms-form="profile"
+                    class="profile-form-container-2" aria-label="signup">
+                    {% csrf_token %}
+                    <h1 class="small-h1">General Info<span data-ms-member="first-name"></span></h1>
+                    <div class="spacer-xs"></div>
+                    <div>Use the form below to update your profile.</div>
+                    <div class="spacer-m"></div>
+                    <div class="input-wrapper">
+                        <label for="Phone-2" class="input-label">Username</label>
+                        {{u_form.username}}
+    
+                    </div>
+                    <div class="flex-row-outer">
+                        <div class="input-wrapper _15p-right"><label for="First-Name-4" class="input-label">First
+                                Name</label><input type="text" class="ms-input w-input" maxlength="256" name="First-Name-4"
+                                data-name="First Name 4" placeholder="" id="First-Name-4" data-ms-member="first-name"
+                                required=""></div>
+                        <div class="input-wrapper"><label for="Last-Name-4" class="input-label">Last Name</label><input
+                                type="text" class="ms-input w-input" maxlength="256" name="Last-Name-4"
+                                data-name="Last Name 4" placeholder="" id="Last-Name-4" data-ms-member="last-name"
+                                required=""></div>
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="Phone-2" class="input-label">Phone</label><input type="text" class="ms-input w-input"
+                            maxlength="256" name="Phone-2" data-name="Phone 2" placeholder="" id="Phone-2"
+                            data-ms-member="phone" required="">
+                        <div class="input-description">We collect this incase of emergencies.</div>
+                    </div>
+                    <div class="spacer-m"></div>
+
+
+                    <input type="submit" value="Save Profile" data-wait="Please wait..."
+                        class="button absolute w-button">
+                </form>
+                <div class="w-form-done" tabindex="-1" role="region" aria-label="signup success">
+                    <div>Thank you! Your submission has been received!</div>
+                </div>
+                <div class="w-form-fail" tabindex="-1" role="region" aria-label="signup failure">
+                    <div>Oops! Something went wrong while submitting the form.</div>
+                </div>
+            </div>
+            <div class="spacer-xl"></div>
+            <div class="w-form">
+                <form id="wf-form-signup" name="wf-form-signup" data-name="signup" method="get" data-ms-form="email"
+                    class="profile-form-container-2" aria-label="signup">
+                    <h1 class="small-h1">Email Address<span data-ms-member="first-name"></span></h1>
+                    <div class="spacer-xs"></div>
+                    <div>Use this form to update your email.</div>
+                    <div class="spacer-m"></div>
+                    <div class="input-wrapper">
+                        <label for="Email-2" class="input-label">Email</label>
+                        {{u_form.email}}
+ 
+                        <div class="input-description">You will need this email to log in.</div>
+                    </div>
+                    <input type="submit" value="Update Email" data-wait="Please wait..."
+                        class="button absolute w-button">
+                </form>
+                <div class="w-form-done" tabindex="-1" role="region" aria-label="signup success">
+                    <div>Thank you! Your submission has been received!</div>
+                </div>
+                <div class="w-form-fail" tabindex="-1" role="region" aria-label="signup failure">
+                    <div>Oops! Something went wrong while submitting the form.</div>
+                </div>
+            </div>
+            <div class="spacer-xl"></div>
+            <div class="w-form">
+                <form id="wf-form-signup" name="wf-form-signup" data-name="signup" method="get" data-ms-form="password"
+                    class="profile-form-container-2" aria-label="signup">
+                    <h1 class="small-h1">Password<span data-ms-member="first-name"></span></h1>
+                    <div class="spacer-xs"></div>
+                    <div>Use this form to update your password.</div>
+                    <div class="spacer-m"></div>
+                    <div class="input-wrapper"><label for="Email-3" class="input-label">Current Password</label><input
+                            type="text" class="ms-input w-input" maxlength="256" name="Email-3" data-name="Email 3"
+                            placeholder="" id="Email-3" data-ms-member="current-password" required=""></div>
+                    <div class="input-wrapper">
+                        <label for="Email-3" class="input-label">New Password</label><input type="text"
+                            class="ms-input w-input" maxlength="256" name="Email-2" data-name="Email 2" placeholder=""
+                            id="Email-2" data-ms-member="current-password" required="">
+                        <div class="input-description">Must be at least 8 characters long.</div>
+                    </div>
+                    <input type="submit" value="Update Password" data-wait="Please wait..."
+                        class="button absolute w-button">
+                </form>
+                <div class="w-form-done" tabindex="-1" role="region" aria-label="signup success">
+                    <div>Thank you! Your submission has been received!</div>
+                </div>
+                <div class="w-form-fail" tabindex="-1" role="region" aria-label="signup failure">
+                    <div>Oops! Something went wrong while submitting the form.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        // messages timeout for 10 sec 
+        setTimeout(function () {
+            $('.alert').fadeOut('slow');
+        }, 3000); // <-- time in milliseconds, 1000 =  1 sec
+
+        // delete message
+        $('.del-msg').live('click', function () {
+            $('.del-msg').parent().attr('style', 'display:none;');
+        })
+    });
+</script>
+
+{% endblock content%}

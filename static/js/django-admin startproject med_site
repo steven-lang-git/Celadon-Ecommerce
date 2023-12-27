@@ -1,0 +1,224 @@
+django-admin startproject med_site
+
+python manage.py runserver //to run the server
+
+//start app
+python manage.py startapp medPart
+
+//to refresh the server
+ctrl shift R
+
+//to format the file
+//select the text desired then
+ctrl alt L
+
+
+//after editing the models run following for aa migration
+python mange.py makemigrations
+python manage.py migrate
+
+//run command to install Pillow for the ImageFields
+python3 -m pip install Pillow
+python manage.py makemigrations
+
+all categories class = list-group-item list-group-item-action
+
+
+
+// for excel integration
+pipinstall django-import-export 
+
+
+
+    <div class="search-container">
+            <form class="form-inline my-2 my-lg-0 ">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+
+        </div>
+
+
+
+                            <h6 style="color: #1E90FF; text-transform: capitalize;"><strong>{{ user.username}}</strong></h6>
+
+
+
+    form_class = UserCreationForm
+    template_name = "signup.html"
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return HttpResponseForbidden()
+
+        return super(sign_up, self).dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        user = form.save(commit=False)
+        user.set_password(form.cleaned_data.get('password'))
+        user.save()
+        return HttpResponse('User registered')
+
+
+    suggestions:
+    promotion enter email to receive 10% off coupon
+    send emails for confirmation
+    customer feedback and review system.
+    advertisement for website
+
+
+path('<int:id>', views.product_detail, name='product'),
+
+
+var availableTags = [
+    "ActionScript",
+    "AppleScript",
+    "Asp",
+    "BASIC",
+    "C",
+    "C++",
+    "Clojure",
+    "COBOL",
+    "ColdFusion",
+    "Erlang",
+    "Fortran",
+    "Groovy",
+    "Haskell",
+    "Java",
+    "JavaScript",
+    "Lisp",
+    "Perl",
+    "PHP",
+    "Python",
+    "Ruby",
+    "Scala",
+    "Scheme"];
+
+$("#tags").autocomplete({
+    source: availableTags,
+    select: function (event, ui) {
+        var elem = $(event.originalEvent.toElement);
+        if (elem.hasClass('ac-item-a')) {
+            var url = elem.attr('data-url');
+            event.preventDefault();
+            window.open(url, '_blank ');
+        }
+    }
+}).data("ui-autocomplete")._renderItem = function (ul, item) {
+    return $("<li></li>")
+        .data("item.autocomplete", item)
+        .append('<a>' + item.label + '<span class="ac-item-a" data-url="http://www.nba.com">(View Details)</span></a>')
+        .appendTo(ul);
+};
+
+its not liking the argument of just ", when it will be 1,
+<!--                            source: '{% url 'autocomplete' %}',-->
+
+                            source: [{
+                                product_name: "Shit Biscuit",
+                                pfimage_thumb: "thumb1.jpg",
+                                id: 1
+                              }, {
+                                product_name: "Dumpster",
+                                pfimage_thumb: "thumb2.jpg",
+                                id: 2
+                              }, {
+                                product_name: "Dumb shiz",
+                                pfimage_thumb: "thumb3.jpg",
+                                id: 3
+                              }];
+                            select: function (event, ui) {
+                                var elem = $(event.originalEvent.toElement);
+                                if(elem.hasClass('ac-item-a')) {
+                                    var url = elem.attr('data-url');
+                                    event.preventDefault();
+                                    window.open(url,'_blank');
+                                }
+                            }
+
+                        }).data("ui-autocomplete")._renderItem = function(ul,item) {
+                        return $("<li></li>")
+                            .data("ui-autocomplete-item",item)
+                            .append('<a>' +item.label + '' +this.value+ '<span class="ac-item-a" data-url={% url 'product' 1 %}> (View Details)</span></a>')
+                            .appendTo(ul);
+
+                    };
+
+
+
+
+  <h4 class="text-uppercase" style="text-align:left">Reviews</h4>
+                                    {% for entry in page.object_list %}
+                                    <div class="single-review">
+                                        <div class="review-heading">
+                                            <div><a href="#"><i class="fa fa-user-o"></i>{{entry.user.username}}</a>
+                                            </div>
+                                            <div class="review-rating">
+                                                <i class="fa fa-star{% if entry.rate < 1 %}-o empty{% endif %}"></i>
+                                                <i class="fa fa-star{% if entry.rate < 2 %}-o empty{% endif %}"></i>
+                                                <i class="fa fa-star{% if entry.rate < 3 %}-o empty{% endif %}"></i>
+                                                <i class="fa fa-star{% if entry.rate < 4 %}-o empty{% endif %}"></i>
+                                                <i class="fa fa-star{% if entry.rate < 5 %}-o empty{% endif %}"></i>
+                                            </div>
+                                            <div style="overflow:hidden; text-overflow: ellipsis; width:30%; white-space: nowrap;">
+                                                <strong>{{entry.subject}}</strong></div>
+                                            <div><a href="#"><i class="fa fa-clock-o">{{ entry.create_at}}</i></a></div>
+
+                                        </div>
+                                        <div class="review-body">
+                                            <p>
+                                                {{entry.comment}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+
+
+---------------------------------------------------------------
+
+
+<div class="col-md-6" id="userRev" style="text-align:center;">
+                                        <h4 class="text-uppercase">Write your review</h4>
+
+                                        <form class="review-form" action="/product/addcomment/{{product.id}}"
+                                              method="post">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                <input name="subject" class="input" type="text"
+                                                       placeholder="Your Subject [MAX 998 CHAR]"/>
+                                            </div>
+                                            <div class="form-group">
+                                            <textarea name="comment" class="input"
+                                                      placeholder="Your review [MAX 8000 CHAR]"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="input-rating">
+                                                    <strong class="text-uppercase">Your Rating:</strong>
+                                                    <div class="stars">
+
+                                                        <input type="radio" id="star1" name="rate" value="1"/><label
+                                                            for="star1"></label>
+                                                        <input type="radio" id="star2" name="rate" value="2"/><label
+                                                            for="star2"></label>
+                                                        <input type="radio" id="star3" name="rate" value="3"/><label
+                                                            for="star3"></label>
+                                                        <input type="radio" id="star4" name="rate" value="4"/><label
+                                                            for="star4"></label>
+                                                        <input type="radio" id="star5" name="rate" value="5"/><label
+                                                            for="star5"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% if user.id is not None %}
+                                            <button class="btn btn-primary">submit</button>
+                                            {% else %}
+                                            You must be logged in to post a review
+                                            {% endif %}
+
+                                        </form>
+
+                                    </div>
+
+
+
+add amazon button to product page
